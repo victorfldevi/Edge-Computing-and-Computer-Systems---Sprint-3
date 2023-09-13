@@ -1,0 +1,97 @@
+#include <ArduinoJson.h>
+#include <DHT.h>;
+
+#define trigPin 10
+#define echoPin 9
+#define ledPin 2
+
+#define DHTPIN 5
+#define DHTTYPE DHT22
+DHT dht(DHTPIN, DHTTYPE);
+
+int chk;
+float hum;
+float temp;
+
+int counter;
+float duration;
+float distance;
+unsigned long time;
+
+void setup() 
+{
+  Serial.begin(9600);
+  dht.begin();
+
+  pinMode(trigPin, OUTPUT);
+  pinMode(ledPin, OUTPUT);
+  pinMode(echoPin, INPUT);
+}
+
+void loop() 
+{
+  digitalWrite(trigPin, LOW);
+  delayMicroseconds(2);
+
+  digitalWrite(trigPin, HIGH);
+  delayMicroseconds(10);
+  digitalWrite(trigPin, LOW);
+
+  duration = 0;
+  counter = 0;
+
+  hum = dht.readHumidity();
+  temp= dht.readTemperature();
+
+
+  while (--counter != 0) 
+  {
+    if (PINB & 2) 
+    {
+      time = micros();
+      break;
+    }
+  }
+  while (--counter != 0) 
+  {
+    if ((PINB & 2) == 0) 
+    {
+      duration = micros() - time;
+      break;
+    }
+  }
+
+  distance = (duration / 2) * 0.0344;
+
+  DynamicJsonDocument json(1024); // Tamanho do buffer para o JSON
+
+  if (distance > 400) 
+  {
+    json["distance"] = "> 400";
+  } 
+  else if (distance < 2) 
+  {
+    json["distance"] = "< 2";
+  } 
+  else 
+  {
+    json["distance"] = distance;
+  }
+
+  if(temp > 30 || hum < 50)
+  {
+    digitalWrite(ledPin, HIGH);
+  }
+  else
+  {
+    digitalWrite(ledPin, LOW);
+  }
+
+  json["temperature"] = temp;
+  json["humidity"] = hum;
+
+  String jsonString;
+  serializeJson(json, jsonString);
+  Serial.println(jsonString); // Envia o JSON via serial
+  delay(1000);
+}

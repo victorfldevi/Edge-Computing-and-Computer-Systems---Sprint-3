@@ -1,0 +1,37 @@
+<circuit version="1.0.0-SR0" rev="1320" stepSize="1000000" stepsPS="1000000" NLsteps="100000" reaStep="1000000" animate="0" >
+
+<item itemtype="Voltage Source" CircId="Voltage Source-1" mainComp="false" ShowProp="MaxValue" Show_id="false" Show_Val="true" Pos="764,520" rotation="0" hflip="1" vflip="1" label="Voltage Source-1" idLabPos="-32,-48" labelrot="0" valLabPos="-8,30" valLabRot="0" Running="true" Value_Volt="2.095 V" MaxValue="5 V" />
+
+<item itemtype="Subcircuit" CircId="Uno-2" mainComp="false" Show_id="true" Show_Val="false" Pos="852,576" rotation="0" hflip="1" vflip="1" label="Uno-2" idLabPos="0,-20" labelrot="0" valLabPos="-16,20" valLabRot="0" Logic_Symbol="false">
+<mainCompProps itemtype="MCU" CircId="2_mega328-109" mainComp="true" Show_id="false" Show_Val="false" Pos="20,20" rotation="0" hflip="1" vflip="1" label="2_mega328-109" idLabPos="0,-20" labelrot="0" valLabPos="-16,20" valLabRot="0" Frequency="16 MHz" Program="Edge Computing & Computer Systems - Checkpoint 3/Checkpoint3.hex" Auto_Load="false" Rst_enabled="true" Ext_Osc="true" Wdt_enabled="false" />
+</item>
+
+<item itemtype="SR04" CircId="SR04-3" mainComp="false" Show_id="false" Show_Val="false" Pos="928,452" rotation="0" hflip="1" vflip="1" label="SR04-3" idLabPos="-16,-48" labelrot="0" valLabPos="-16,20" valLabRot="0" />
+
+<item itemtype="SerialPort" CircId="SerialPort-36" mainComp="false" Show_id="false" Show_Val="false" Pos="716,728" rotation="0" hflip="1" vflip="1" label="SerialPort-36" idLabPos="-20,-32" labelrot="0" valLabPos="-16,20" valLabRot="0" Port="COM3" Baudrate="9600 _Bauds" DataBits="8 _Bits" StopBits="1 _Bits" />
+
+<item itemtype="Led" CircId="Led-44" mainComp="false" Show_id="false" Show_Val="false" Pos="788,680" rotation="90" hflip="1" vflip="1" label="Led-44" idLabPos="-16,-24" labelrot="0" valLabPos="-16,20" valLabRot="0" Color="Red" Grounded="false" Threshold="1.8 V" MaxCurrent="0.03 A" Resistance="0.6 Ω" />
+
+<item itemtype="Dht22" CircId="Dht22-52" mainComp="false" Show_id="false" Show_Val="false" Pos="736,668" rotation="-540" hflip="-1" vflip="-1" label="Dht22-52" idLabPos="-28,-32" labelrot="0" valLabPos="-16,20" valLabRot="0" DHT22="DHT22" TempInc="0.5 °C" HumiInc="5 _%" />
+
+<item itemtype="Resistor" CircId="Resistor-59" mainComp="false" ShowProp="Resistance" Show_id="false" Show_Val="true" Pos="788,632" rotation="-450" hflip="1" vflip="1" label="Resistor-59" idLabPos="-16,-24" labelrot="0" valLabPos="-16,6" valLabRot="0" Resistance="220 Ω" />
+
+<item itemtype="Connector" uid="connector-62" startpinid="Uno-2-9" endpinid="SR04-3-outpin" pointList="860,672,824,672,824,544,936,544,936,500" />
+
+<item itemtype="Connector" uid="connector-63" startpinid="Uno-2-10" endpinid="SR04-3-trigpin" pointList="860,680,816,680,816,536,928,536,928,500" />
+
+<item itemtype="Connector" uid="connector-64" startpinid="Voltage Source-1-outPin" endpinid="SR04-3-inpin" pointList="792,536,808,536,808,428,840,428" />
+
+<item itemtype="Connector" uid="connector-65" startpinid="SerialPort-36-pin1" endpinid="Uno-2-1" pointList="676,736,668,736,668,600,860,600" />
+
+<item itemtype="Connector" uid="connector-66" startpinid="Led-44-rPin" endpinid="Uno-2-GND2" pointList="788,696,860,696,860,712" />
+
+<item itemtype="Connector" uid="connector-68" startpinid="SerialPort-36-pin0" endpinid="Uno-2-0" pointList="676,720,660,720,660,592,860,592" />
+
+<item itemtype="Connector" uid="Connector-77" startpinid="Resistor-59-lPin" endpinid="Led-44-lPin" pointList="788,648,788,664" />
+
+<item itemtype="Connector" uid="Connector-78" startpinid="Resistor-59-rPin" endpinid="Uno-2-2" pointList="788,616,860,616,860,608" />
+
+<item itemtype="Connector" uid="connector-67" startpinid="Dht22-52-inPin" endpinid="Uno-2-5" pointList="700,664,700,632,836,632,860,632" />
+
+</circuit>
